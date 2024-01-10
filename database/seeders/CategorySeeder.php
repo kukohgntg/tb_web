@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class RoleSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +15,15 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         Schema::disableForeignKeyConstraints();
-        Role::truncate();
+        Category::truncate();
         Schema::enableForeignKeyConstraints();
 
         $data = [
-            'admin', 'client'
+            'comic', 'novel', 'fantasy', 'fiction', 'mystery', 'horror', 'romance', 'western'
         ];
 
         foreach ($data as $value) {
-            Role::insert(['name' => $value]);
+            Category::insert(['name' => $value]);
         }
     }
 }
