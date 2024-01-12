@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -29,13 +30,17 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             //cek user status active
             if (Auth::user()->status != 'active') {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
                 Session::flash('status', 'failed');
                 Session::flash('message', 'your account is not active, please contact admin');
                 return redirect('/login');
             }
 
             // dd(Auth::user());
-            // $request->session()->regenerate();
+            $request->session()->regenerate();
             if (Auth::user()->role_id == 1) {
                 return redirect('dashboard');
             }
@@ -56,5 +61,22 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('login');
+    }
+
+    public function registerProcess(Request $request)
+    {
+        // dd($request->all());
+        $validated = $request->validate([
+            'username' => 'required|unique:users|max:225',
+            'password' => 'required|max:255',
+            'phone' => 'max:13',
+            'address' => 'required',
+        ]);
+        // dd($validated);
+        $user = User::create($request->all());
+
+        Session::flash('status', 'success');
+        Session::flash('message', 'wait approval');
+        return redirect('register');
     }
 }

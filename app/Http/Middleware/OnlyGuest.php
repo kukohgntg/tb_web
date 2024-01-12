@@ -18,7 +18,7 @@ class OnlyGuest
     {
         //jika bukan client
         if (Auth::user()) {
-            return redirect('book');
+            return redirect('books');
         }
         //jika client
         return $next($request);

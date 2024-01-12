@@ -18,7 +18,7 @@ class OnlyAdmin
     {
         //jika bukan admin
         if (Auth::user()->role_id != 1) {
-            return redirect('book');
+            return redirect('books');
         }
 
         //jika admin

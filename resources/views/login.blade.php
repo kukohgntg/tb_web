@@ -27,7 +27,7 @@
 <body>
     <div class="main d-flex flex-column justify-content-center align-items-center">
         @if (session('status'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" style="width: 500px;">
             {{ session('message') }}
         </div>
         @endif
@@ -43,10 +43,10 @@
                     <input type="password" name="password" id="password" class="form-control" required>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary form-control">Submit</button>
+                    <button type="submit" class="btn btn-primary form-control">Login</button>
                 </div>
                 <div class="text-center">
-                    <a href="register">SignUp</a>
+                    Don't have an account?<a href="register"> Register</a>
                 </div>
             </form>
         </div>
