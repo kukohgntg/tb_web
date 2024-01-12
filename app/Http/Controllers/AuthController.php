@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function login()
     {
         return view('login');
     }
@@ -48,5 +48,13 @@ class AuthController extends Controller
         Session::flash('status', 'failed');
         Session::flash('message', 'login invalid');
         return redirect('/login');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('login');
     }
 }
