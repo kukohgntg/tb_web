@@ -10,6 +10,7 @@ class UserController extends Controller
     public function profile()
     {
         // $request->session()->flush();
-        dd('halaman profile');
+        // dd('halaman profile');
+        return view('profile');
     }
 }
