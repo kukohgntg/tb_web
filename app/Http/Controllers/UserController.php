@@ -13,4 +13,8 @@ class UserController extends Controller
         // dd('halaman profile');
         return view('profile');
     }
+
+    public function index(){
+        return view('user');
+    }
 }

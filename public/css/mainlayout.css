@@ -1,0 +1,27 @@
+.main {
+    height: 100vh;
+}
+
+.body-content {}
+
+.sidebar {
+    background: darkgray;
+    color: white;
+}
+
+.sidebar a {
+    color: white;
+    color-decoration: none;
+    display: block;
+    padding: 20px 10px;
+
+}
+
+.sidebar a:hover {
+    background: black;
+}
+
+.active {
+    background: black;
+    border-right: solid 10px orange;
+}
