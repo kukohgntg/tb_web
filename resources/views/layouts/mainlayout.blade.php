@@ -2,59 +2,152 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
     <title>Rental Buku | @yield('title')</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="{{ asset('css\styles.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<link rel="stylesheet" href="{{ asset('css\mainlayout.css') }}">
 
-<body>
-    <div class="main d-flex flex-column justify-content-between">
-
-        <nav class="navbar navbar-dark navbar-expand-lg bg-primary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Rental Buku</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="#">Rental Buku</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
+                    aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button">
+                    <i class="fas fa-search"></i>
                 </button>
-
             </div>
-        </nav>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="logout">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
-        <div class="body-content h-100">
-            <div class="row g-0 h-100">
-                <div class="sidebar col-lg-2 collapse d-lg-block" id="navbarSupportedContent">
-                    @if (Auth::user()->role_id == 1)
-                        <a href="dashboard" @if (request()->route()->uri == 'dashboard') class='active' @endif>Dashboard</a>
-                        <a href="books" @if (request()->route()->uri == 'books') class='active' @endif>Books</a>
-                        <a href="categories" @if (request()->route()->uri == 'categories' ||
-                                request()->route()->uri == 'category-add' ||
-                                request()->route()->uri == 'category-edit/{slug}' ||
-                                request()->route()->uri == 'category-delete/{slug}' ||
-                                request()->route()->uri == 'category-deleted') class='active' @endif>Categories</a>
-                        <a href="users" @if (request()->route()->uri == 'users') class='active' @endif>Users</a>
-                        <a href="rent-logs" @if (request()->route()->uri == 'rent-logs') class='active' @endif>Rent log</a>
-                        <a href="logout">Logout</a>
-                    @else
-                        <a href="profile" @if (request()->route()->uri == 'profile') class='active' @endif>Profile</a>
-                        <a href="logout">Logout</a>
-                    @endif
+    <!-- Sidebar -->
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        @if (Auth::user()->role_id == 1)
+                            <div class="sb-sidenav-menu-heading">Core</div>
+
+                            <a class="nav-link" href="dashboard">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                Dashboard
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Addons</div>
+
+                            <a class="nav-link" href="books">
+                                <div class="sb-nav-link-icon"><i class="bi bi-book"></i></div>
+                                Books
+                            </a>
+
+                            <a class="nav-link" href="categories">
+                                <div class="sb-nav-link-icon"><i class="bi bi-tags"></i></div>
+                                Categories
+                            </a>
+
+                            <a class="nav-link" href="users">
+                                <div class="sb-nav-link-icon"><i class="bi bi-people"></i></div>
+                                Users
+                            </a>
+
+                            <a class="nav-link" href="rent-logs">
+                                <div class="sb-nav-link-icon">
+                                    <i class="bi bi-card-checklist"></i>
+                                </div>
+                                Rent Logs
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">User</div>
+
+                            <a class="nav-link" href="logout">
+                                <div class="sb-nav-link-icon">
+                                    <i class="bi bi-box-arrow-in-left"></i>
+                                </div>
+                                Logout
+                            </a>
+                        @else
+                            <div class="sb-sidenav-menu-heading">User</div>
+
+                            <a class="nav-link" href="profile">
+                                <div class="sb-nav-link-icon">
+                                    <i class="bi bi-box-arrow-in-left"></i>
+                                </div>
+                                Profile
+                            </a>
+
+                            <a class="nav-link" href="logout">
+                                <div class="sb-nav-link-icon">
+                                    <i class="bi bi-box-arrow-in-left"></i>
+                                </div>
+                                Logout
+                            </a>
+                        @endif
+                    </div>
                 </div>
-                <div class="content p-5 col-lg-10">
-                    @yield('content')
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as: {{ Auth::user()->username }}</div>
+                    Rental Buku
                 </div>
-            </div>
+            </nav>
         </div>
+        <div id="layoutSidenav_content">
 
+            <main>
+                @yield('content')
+            </main>
+
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
+    <script src="{{ asset('js\scripts.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets\demo\chart-area-demo.js') }}"></script>
+    <script src="{{ asset('assets\demo\chart-bar-demo.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="{{ asset('js\datatables-simple-demo.js') }}"></script>
 </body>
 
 </html>
