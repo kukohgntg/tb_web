@@ -53,7 +53,7 @@
                         @if (Auth::user()->role_id == 1)
                             <div class="sb-sidenav-menu-heading">Core</div>
 
-                            <a class="nav-link" href="dashboard">
+                            <a class="nav-link" href="/dashboard">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
@@ -62,22 +62,22 @@
 
                             <div class="sb-sidenav-menu-heading">Addons</div>
 
-                            <a class="nav-link" href="books">
+                            <a class="nav-link" href="/books">
                                 <div class="sb-nav-link-icon"><i class="bi bi-book"></i></div>
                                 Books
                             </a>
 
-                            <a class="nav-link" href="categories">
+                            <a class="nav-link" href="/categories">
                                 <div class="sb-nav-link-icon"><i class="bi bi-tags"></i></div>
                                 Categories
                             </a>
 
-                            <a class="nav-link" href="users">
+                            <a class="nav-link" href="/users">
                                 <div class="sb-nav-link-icon"><i class="bi bi-people"></i></div>
                                 Users
                             </a>
 
-                            <a class="nav-link" href="rent-logs">
+                            <a class="nav-link" href="/rent-logs">
                                 <div class="sb-nav-link-icon">
                                     <i class="bi bi-card-checklist"></i>
                                 </div>
@@ -86,7 +86,7 @@
 
                             <div class="sb-sidenav-menu-heading">User</div>
 
-                            <a class="nav-link" href="logout">
+                            <a class="nav-link" href="/logout">
                                 <div class="sb-nav-link-icon">
                                     <i class="bi bi-box-arrow-in-left"></i>
                                 </div>
@@ -95,14 +95,14 @@
                         @else
                             <div class="sb-sidenav-menu-heading">User</div>
 
-                            <a class="nav-link" href="profile">
+                            <a class="nav-link" href="/profile">
                                 <div class="sb-nav-link-icon">
                                     <i class="bi bi-box-arrow-in-left"></i>
                                 </div>
                                 Profile
                             </a>
 
-                            <a class="nav-link" href="logout">
+                            <a class="nav-link" href="/logout">
                                 <div class="sb-nav-link-icon">
                                     <i class="bi bi-box-arrow-in-left"></i>
                                 </div>

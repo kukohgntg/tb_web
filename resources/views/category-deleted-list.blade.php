@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="mt-3 d-flex justify-content-end">
-            <a href="categories" class="btn btn-primary me-3">Back</a>
+            <a href="/categories" class="btn btn-primary me-3">Back</a>
         </div>
     </div>
 

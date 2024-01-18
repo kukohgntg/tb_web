@@ -34,7 +34,17 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
     Route::get('profile', [UserController::class, 'profile'])->middleware('only_client');
+
     Route::get('books', [BookControllers::class, 'index']);
+    Route::get('book-add', [BookControllers::class, 'add']);
+    Route::post('book-add', [BookControllers::class, 'store']);
+    Route::get('book-edit/{slug}', [BookControllers::class, 'edit']);
+    Route::post('book-edit/{slug}', [BookControllers::class, 'update']);
+    Route::get('book-delete/{slug}', [BookControllers::class, 'delete']);
+    Route::get('book-destroy/{slug}', [BookControllers::class, 'destroy']);
+    Route::get('book-deleted', [BookControllers::class, 'deleted']);
+    Route::get('book-restore/{slug}', [BookControllers::class, 'restore']);
+
 
     Route::get('categories', [CategoryController::class, 'index']);
     Route::get('category-add', [CategoryController::class, 'add']);
