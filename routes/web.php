@@ -32,10 +32,11 @@ Route::middleware('only_guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
-    Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
     Route::get('profile', [UserController::class, 'profile'])->middleware('only_client');
 
     Route::middleware('only_admin')->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'index']);
+
         Route::get('books', [BookControllers::class, 'index']);
         Route::get('book-add', [BookControllers::class, 'add']);
         Route::post('book-add', [BookControllers::class, 'store']);
