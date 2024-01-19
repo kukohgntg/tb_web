@@ -1,13 +1,13 @@
 @extends('layouts.mainlayout')
 
-@section('title', 'Users')
+@section('title', 'Registered Users')
 
 @section('content')
 
     <div class="container-fluid px-4">
-        <h1 class="mt-4">User List</h1>
+        <h1 class="mt-4">New Registered User List</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">list of user</li>
+            <li class="breadcrumb-item active">list of new registered user</li>
         </ol>
 
         <div class="mt-5">
@@ -40,7 +40,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($users as $item)
+                        @foreach ($registeredUsers as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->username }}</td>
@@ -53,7 +53,6 @@
                                 </td>
                                 <td>
                                     <a href="/user-detail/{{ $item->slug }}">detail</a>
-                                    <a href="/user-ban/{{ $item->slug }}">ban user</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -62,8 +61,7 @@
             </div>
         </div>
         <div class="mt-3 d-flex justify-content-end">
-            <a href="/registered-users" class="btn btn-primary me-3">Aprove User</a>
-            <a href="/user-banned" class="btn btn-secondary">Banned User</a>
+            <a href="/users" class="btn btn-secondary me-3">Back</a>
         </div>
     </div>
 

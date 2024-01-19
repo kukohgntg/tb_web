@@ -1,11 +1,11 @@
 @extends('layouts.mainlayout')
 
-@section('title', 'Users')
+@section('title', 'Banned Users')
 
 @section('content')
 
     <div class="container-fluid px-4">
-        <h1 class="mt-4">User List</h1>
+        <h1 class="mt-4">Banned Users List</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">list of user</li>
         </ol>
@@ -40,7 +40,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($users as $item)
+                        @foreach ($bannedUser as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->username }}</td>
@@ -52,8 +52,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="/user-detail/{{ $item->slug }}">detail</a>
-                                    <a href="/user-ban/{{ $item->slug }}">ban user</a>
+                                    <a href="/user-restore/{{ $item->slug }}">restore</a>
                                 </td>
                             </tr>
                         @endforeach
